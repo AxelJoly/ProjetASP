@@ -70,3 +70,22 @@ L'url de mon repo est https://gitlab.com/moi/mon-projet.git
 `git remote add origin https://gitlab.com/moi/mon-projet.git`  
 Push, en indiquant que master correspond à origin/master  
 `git push -u origin master`  
+
+## Ajout d'un tag Git
+Créer le tag dans le repo local  
+`git tag v0.1`  
+Pusher le tag dans le remote repo  
+`git push origin v0.1`  
+
+# Ajout d'un modèle
+Dans le projet Library :  
+* Créer un dossier Models/Implementation
+* Créer un classe `Person` :
+  * `Id` (int)
+  * `Name` (string)
+  * `FirstName` (string)
+  * `LastName` (string)
+  * `BirthDate` (DateTime)
+* Créer une classe `City` : 
+  * `Id` (int)
+  * `Name` (string)
