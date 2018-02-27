@@ -15,7 +15,6 @@ namespace Isen.DotNet.ConsoleApp
                 City = new City { Name = "Toulon" },
                 BirthDate = new DateTime(1980,2,28)
             };
-            me.City.Name = "";
             Console.WriteLine(me);
         }
     }
