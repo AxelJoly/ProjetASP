@@ -104,3 +104,7 @@ Extraire l'interface de ce repo dans `Repositories/Interfaces/IInMemoryCityRepos
 
 ## Refactoring interface : extraire IBaseRepository
 Déplacer les 3 méthodes de l'interface vers IBaseRepository  
+
+## Refactoring Repository
+* Créer la classe abstraite Repositories/Base/_BaseRepository.cs  
+* Déplacer la logique de CityReposiory vers cette classe  
