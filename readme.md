@@ -63,3 +63,10 @@ Depuis le dossier du projet de tests :
  Commit git (penser à se remettre dans le dossier racine)  
 `git add .`  
 `git commit -m "Test project"`  
+
+## Push du projet sur un repo remote
+Créer un projet sur le serveur Git de votre choix (GitHub, GitLab, interne ISEN...)  
+L'url de mon repo est https://gitlab.com/moi/mon-projet.git  
+`git remote add origin https://gitlab.com/moi/mon-projet.git`  
+Push, en indiquant que master correspond à origin/master  
+`git push -u origin master`  
