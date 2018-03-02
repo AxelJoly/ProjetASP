@@ -131,3 +131,15 @@ Ajouter les méthodes `DeleteRange` suivantes :
   * Usage : `repo.DeleteRange(new List<T> {p1, p2, p3});`  
 * DeleteRange(params T[] models)  
   * Usage : `repo.DeleteRange(p1, p2, p3);`  
+
+## Ajout de l'Update
+Au niveau du `BaseModel`, ajouter une propriété `IsNew`  
+Dans `BaseInMemoryRepository`, ajouter une méthode `NewId()`, qui renverra le prochain id disponible.
+Dans l'interface `IBaseRepository`,  ajouter la méthode `void Update(T model)`    
+Dans `BaseRepository`, ajouter la méthode `void Update(T model)` (abstraite)  
+Dans `BaseInMemoryRepository`, overrider et implémenter la méthode Update  
+Dans `IBaseRepository` et `BaseRepository`, ajouter les méthodes `UpdateRange` suivantes :  
+* UpdateRange(IEnumerable<T> models)  
+  * Usage : `repo.UpdateRange(new List<T> {p1, p2, p3});`  
+* UpdateRange(params T[] models)  
+  * Usage : `repo.UpdateRange(p1, p2, p3);` 

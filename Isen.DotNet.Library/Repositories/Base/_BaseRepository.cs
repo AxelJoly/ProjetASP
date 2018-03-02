@@ -38,5 +38,13 @@ namespace Isen.DotNet.Library.Repositories.Base
         }
         public virtual void DeleteRange(params T[] models)
             => DeleteRange(models.AsEnumerable());
+        // Méthodes d'Update
+        public abstract void Update(T model);
+        public virtual void UpdateRange(IEnumerable<T> models)
+        {
+            foreach(var m in models) Update(m);
+        }
+        public virtual void UpdateRange(params T[] models)
+            => UpdateRange(models.AsEnumerable());
     }
 }
