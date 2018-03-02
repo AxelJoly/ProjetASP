@@ -143,3 +143,17 @@ Dans `IBaseRepository` et `BaseRepository`, ajouter les méthodes `UpdateRange` 
   * Usage : `repo.UpdateRange(new List<T> {p1, p2, p3});`  
 * UpdateRange(params T[] models)  
   * Usage : `repo.UpdateRange(p1, p2, p3);` 
+
+# Projet Asp.Net Core MVC
+## Création du projet
+Créer du dossier du projet. Depuis le dossier racine :  
+`mkdir Isen.DotNet.Web && cd Isen.DotNet.Web`  
+Ajouter un projet web de type MVC :   
+`dotnet new mvc`  
+Référencer la librairie :  
+`dotnet add reference ..\Isen.DotNet.Library\Isen.DotNet.Library.csproj`  
+Ajouter le projet web à la solution (depuis la racine de la solution) :  
+`dotnet sln add Isen.DotNet.Web\Isen.DotNet.Web.csproj`  
+Compiler / exécuter (dans le dossier du projet web) :  
+`dotnet run`  
+Ouvrir le navigateur : `http://localhost:5000`   
