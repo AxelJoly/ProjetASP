@@ -37,8 +37,6 @@ namespace Isen.DotNet.Library.Repositories.Base
             foreach(var m in models) Delete(m);
         }
         public virtual void DeleteRange(params T[] models)
-        {
-            foreach(var m in models) Delete(m);
-        }   
+            => DeleteRange(models.AsEnumerable());
     }
 }
