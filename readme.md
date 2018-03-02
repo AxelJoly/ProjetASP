@@ -124,5 +124,10 @@ Dans `IBaseRepository<T>` et `BaseRepository<T>`, ajouter une méthode Find, qui
 
 ## Ajout du Delete
 Dans `IBaseRepository<T>` et `BaseRepository<T>`, ajouter 2 méthodes :
-* Delete(int id)
-* Delete(T model)
+* Delete(int id)  
+* Delete(T model)  
+Ajouter les méthodes `DeleteRange` suivantes :  
+* DeleteRange(IEnumerable<T> models)  
+  * Usage : `repo.DeleteRange(new List<T> {p1, p2, p3});`  
+* DeleteRange(params T[] models)  
+  * Usage : `repo.DeleteRange(p1, p2, p3);`  

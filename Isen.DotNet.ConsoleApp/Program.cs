@@ -54,11 +54,18 @@ namespace Isen.DotNet.ConsoleApp
                 Console.WriteLine(c);
             Console.WriteLine("- - - - - - - -");
 
-            // Effacer une ville
+            // Effacer 2 villes
             var epinal = cityRepository.Single("Epinal");
-            cityRepository.Delete(epinal);
+            var paris = cityRepository.Single("Paris");
+            cityRepository.DeleteRange(epinal, paris);
             foreach(var c in cityRepository.GetAll())
                 Console.WriteLine(c);
+            Console.WriteLine("- - - - - - - -");
+
+            // Effacer une personne
+            personRepository.Delete(1);
+            foreach(var p in personRepository.GetAll())
+                Console.WriteLine(p);
             Console.WriteLine("- - - - - - - -");
         }
     }

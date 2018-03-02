@@ -29,8 +29,16 @@ namespace Isen.DotNet.Library.Repositories.Base
         public virtual T Single(string name) => 
             ModelCollection.FirstOrDefault(c => c.Name == name);
         // Méthodes de delete
-        public virtual void Delete(int id) { }
+        public abstract void Delete(int id);
         public virtual void Delete(T model) => 
             Delete(model.Id);
+        public virtual void DeleteRange(IEnumerable<T> models)
+        {
+            foreach(var m in models) Delete(m);
+        }
+        public virtual void DeleteRange(params T[] models)
+        {
+            foreach(var m in models) Delete(m);
+        }   
     }
 }
