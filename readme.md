@@ -212,3 +212,34 @@ Dans le fichier `_Nav.cshtml`, ajouter les éléments suivants (en dropdown) :
   * Ajouter...
 Ne pas mettre de lien pour l'instant, mettre # à la place des liens.  
 Adapter un menu issu du site Bootstrap 3.3 (https://getbootstrap.com/docs/3.3/).  
+
+# Ajout d'une vue et d'un controleur City
+## Mettre à jour le menu
+Dans `_Nav.cshtml`, adapter les liens à partir de ce qui est fait pour les autres.  
+
+## Ajouter une vue cshtml pour la liste
+Dans Views, créer un dossier `City`.  
+Dans le dossier City, créer `Index.cshtml` (ou dupliquer le Index de Home).  
+
+## Ajouter un contrôleur
+Dans Controllers, créer une classe `CityController` et implémenter une méthode `Index` (basée sur ce que l'on a dans Home/Index).  
+
+## Maquetter un tableau
+Dans `Views/City/Index.cshtml`, créer un tableau html avec le design bootstrap.  
+
+## Injecter les données
+Dans le controller, ajouter un champ référence vers `ICityController`.  
+Dans l'action Index, envoyer la liste des villes.  
+Dans la vue, indiquer que le `Model` est du type `IEnumerable<City>`.  
+Faire boucler la ligne du tableau sur le Model.  
+Dans `Startup.cs`, méthode `ConfigureServices`, indiquer le binding entre `ICityRepository` et `InMemoryCityRepository` dans le container IoC (injection de dépendances).  
+
+## Vue détail
+Dans le controller, ajouter une méthode `Detail`.  
+Créer la vue `Views/City/Detail.cshtml`.  
+Coder une maquette html de formulaire d'édition.  
+Dans le controller, méthode Detail(id), utiliser le repository pour récupérer la ville demandée et l'envoyer vers la vue.  
+Dans la vue Detail.cshtml, préciser le type du modèle (City), et injecter les données dans le form.  
+Dans le controleur, ajouter une surcharge de Detail, avec City en paramètre, passé en Http POST.  
+
+## Logging
