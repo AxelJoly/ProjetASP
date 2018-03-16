@@ -364,3 +364,14 @@ Implémenter l'action Delete pour la route `/City/Delete/{id}`
 A côté du city controller, créer un fichier _BaseController.  
 Faire une classe abstraite `BaseController<T>`.  
 Faire hériter `CityController` de cette classe.  
+Déplacer les membres et méthodes vers la classe de base et
+adapter ce qui doit l'être.  
+
+### PersonController + view
+Dupliquer toute la logique associée au vue/controller City :
+* Dupliquer l'item de menu
+* Créer `PersonController`, qui hérite de `BaseController` 
+* Dupliquer le dossier `Views/City` 
+* Adapter la vue Index en modifiant les colonnes
+* Adapter la vue Detail en complétant le formulaire
+
