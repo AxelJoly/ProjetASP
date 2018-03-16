@@ -5,6 +5,7 @@ using Isen.DotNet.Library.Models.Base;
 using Isen.DotNet.Library.Models.Implementation;
 using Isen.DotNet.Library.Repositories.Base;
 using Isen.DotNet.Library.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Isen.DotNet.Library.Repositories.DbContext
@@ -18,5 +19,9 @@ namespace Isen.DotNet.Library.Repositories.DbContext
             : base(logger, context)
         {
         }
+
+        public override IQueryable<Person> Includes(
+            IQueryable<Person> queryable)
+                => queryable.Include(p => p.City);
     }
 }

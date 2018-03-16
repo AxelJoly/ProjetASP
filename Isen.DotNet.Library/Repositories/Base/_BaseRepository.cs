@@ -23,11 +23,18 @@ namespace Isen.DotNet.Library.Repositories.Base
         public abstract IQueryable<T> ModelCollection { get; }
         
         // Méthodes de listes (tout et query)
-        public virtual IEnumerable<T> GetAll() => ModelCollection;
+        public virtual IEnumerable<T> GetAll()
+        {
+            var queryable = ModelCollection;
+            queryable = Includes(queryable);
+            return queryable; 
+        }
         public virtual IEnumerable<T> Find(
             Func<T, bool> predicate)
         {
             var queryable = ModelCollection;
+            // inclusions
+            queryable = Includes(queryable);
             // filter
             queryable = queryable
                 .Where(m => predicate(m));
@@ -35,10 +42,19 @@ namespace Isen.DotNet.Library.Repositories.Base
         }
 
         // Méthodes pour renvoyer 1 élément
-        public virtual T Single(int id) => 
-            ModelCollection.SingleOrDefault(c => c.Id == id);
-        public virtual T Single(string name) => 
-            ModelCollection.FirstOrDefault(c => c.Name == name);
+        public virtual T Single(int id)
+        {
+            var queryable = ModelCollection;
+            queryable = Includes(queryable);
+            return queryable.SingleOrDefault(c => c.Id == id);
+        }
+            
+        public virtual T Single(string name)
+        {
+            var queryable = ModelCollection;
+            queryable = Includes(queryable);
+            return queryable.SingleOrDefault(c => c.Name == name);
+        }
         
         // Méthodes de delete
         public abstract void Delete(int id);
@@ -62,5 +78,9 @@ namespace Isen.DotNet.Library.Repositories.Base
 
         // Save
         public virtual void Save() { }
+
+        // Inclusions
+        public virtual IQueryable<T> Includes(
+            IQueryable<T> queryable) => queryable;
     }
 }

@@ -375,3 +375,9 @@ Dupliquer toute la logique associée au vue/controller City :
 * Adapter la vue Index en modifiant les colonnes
 * Adapter la vue Detail en complétant le formulaire
 
+## Relations
+### Inclusion de la ville d'une personne
+Dans `BaseRepository`, ajouter une méthode 
+virtuelle `IQueryable<T> Includes(IQueryable<T> queryable)`.  
+Inclure son appel dans Single, Find, GetAll.  
+Dans CityRepository, override Includes afin d'inclure la ville.  
