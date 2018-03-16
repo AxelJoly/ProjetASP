@@ -359,3 +359,8 @@ Penser à la refermer systématiquement sinon pas de suppression ou écriture po
 ### CityController
 Ajouter un appel à repo.Save() dans la méthode Detail en HTTP POST.  
 Implémenter l'action Delete pour la route `/City/Delete/{id}`  
+
+### Généralisation des controllers
+A côté du city controller, créer un fichier _BaseController.  
+Faire une classe abstraite `BaseController<T>`.  
+Faire hériter `CityController` de cette classe.  

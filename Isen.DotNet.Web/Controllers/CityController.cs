@@ -12,50 +12,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Isen.DotNet.Web.Controllers
 {
-    public class CityController : Controller
+    public class CityController : BaseController<City>
     {
-        private ICityRepository _repository;
-        private readonly ILogger<CityController> _logger;
-
         public CityController(
             ILogger<CityController> logger,
-            ICityRepository repository)
+            ICityRepository repository) 
+            : base(logger, repository)
         {
-            _repository = repository;
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {            
-            var model = _repository.GetAll();
-            return View(model);
-        }
-
-        public IActionResult Detail(int? id)
-        {
-            // Pas d'id > form vide (création)
-            if (id == null) return View();
-            // Récupérer la ville et la passer à la vue
-            var model = _repository.Single(id.Value);
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Detail(City model)
-        {
-            _repository.Update(model);
-            _repository.Save();
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Delete(int? id)
-        {
-            if (id != null)
-            {
-                _repository.Delete(id.Value);
-                _repository.Save();
-            }
-            return RedirectToAction("Index");
         }
     }
 }
