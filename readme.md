@@ -354,3 +354,8 @@ Dans Program, main :
 Tester l'exécution.  
 Télécharger `Sqlitebrowser` et ouvrir le fichier .db créé à la racine du projet web.  
 Penser à la refermer systématiquement sinon pas de suppression ou écriture possible.  
+
+## Controllers
+### CityController
+Ajouter un appel à repo.Save() dans la méthode Detail en HTTP POST.  
+Implémenter l'action Delete pour la route `/City/Delete/{id}`  
