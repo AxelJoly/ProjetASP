@@ -263,3 +263,69 @@ Injecter aussi le logger dans CityController (Web) :
 * Stocker dans un membre
 * L'utiliser dans Detail (POST)
 
+
+# Utilisation d'une base de données
+
+## Avant-propos
+### Framework ORM (Object Relationship Mapping)
+Mapping object (classes) avec enregistrements (relationnelles)
+ou documents (no-sql).  
+Entity Framework (EF).
+Versions 1 à 6, puis EF Core 1.0, 2.0.  
+EF fournit un provider SQL Server, mais aussi Oracle, MySQL, SQLite, Mongo, Cassandra...  
+
+### Mécanisme Code-First
+Code les classes (les modèles) et leurs relations.  
+CodeFirst s'occupe de créer (ou mettre à jour) le schéma SQL.  
+
+Avec EF + Code first, on n'écrit pas une seule ligne de SQL.  
+
+### SQLite
+Sera utilisé pour cette démo. Ne pas utiliser en prod (perfs, accès concurrentiels). 
+
+## Ajout des packages NuGet nécessaires.  
+Au niveau du projet Library, on va ajouter 2 packages :  
+* Entity Framework
+* Provider SQLite pour Entity Framework
+
+Exécuter ces commandes :
+
+    dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+    dotnet add package Microsoft.EntityFrameworkCore.Design
+
+## Configuration
+Dans `appsettings.json` (racine projet web), ajouter :  
+
+    "ConnectionStrings": {
+      "DefaultConnection": "DataSource=.\\IsenWebApp.db"
+    }
+
+## Ajouter une classe de contexte
+Dans le projet Library, ajouter un fichier `data/ApplicationDbContext.cs`.  
+
+## Injecter le service EF / SQLite
+Dans `Startup` (web), injecter le service EF / SQLite
+dans la méthode `ConfigureServices()`.  
+
+## Mettre à jour et implémenter les DbRepositories
+
+### `IBaseRepository`
+* Ajouter une méthode `Save()`  
+* Corriger les erreurs générées en implémentant 
+  une méthode vide.   
+
+### `BaseDbContextRepository`
+Dans Library/Repositories :
+* Créer un fichier `DbContext/_BaseDbContextRepository.cs`
+* Ajouter un constructeur et un champ pour injecter le contexte
+* Override du `ModelCollection` 
+* Implémentation de `Delete`, `Update`, `Save`  
+
+### Concrétiser les `DbContextXXXRepository`  
+Hériter de `BaseDbContextRepository` pour créer :
+* `DbContextCityRepository`  
+* Le dupliquer pour faire `DbContextPersonRepository`  
+
+### Modifier l'injection de dépendances
+Dans Startup, changer les InMemory par des DbContext
+et remettre l'injection en mode Scoped.  

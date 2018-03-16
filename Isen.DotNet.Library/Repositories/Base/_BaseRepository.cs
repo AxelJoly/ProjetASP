@@ -21,6 +21,7 @@ namespace Isen.DotNet.Library.Repositories.Base
 
         // Liste des objets du modèle
         public abstract IQueryable<T> ModelCollection { get; }
+        
         // Méthodes de listes (tout et query)
         public virtual IEnumerable<T> GetAll() => ModelCollection;
         public virtual IEnumerable<T> Find(
@@ -32,11 +33,13 @@ namespace Isen.DotNet.Library.Repositories.Base
                 .Where(m => predicate(m));
             return queryable;
         }
+
         // Méthodes pour renvoyer 1 élément
         public virtual T Single(int id) => 
             ModelCollection.SingleOrDefault(c => c.Id == id);
         public virtual T Single(string name) => 
             ModelCollection.FirstOrDefault(c => c.Name == name);
+        
         // Méthodes de delete
         public abstract void Delete(int id);
         public virtual void Delete(T model) => 
@@ -47,6 +50,7 @@ namespace Isen.DotNet.Library.Repositories.Base
         }
         public virtual void DeleteRange(params T[] models)
             => DeleteRange(models.AsEnumerable());
+
         // Méthodes d'Update
         public abstract void Update(T model);
         public virtual void UpdateRange(IEnumerable<T> models)
@@ -55,5 +59,8 @@ namespace Isen.DotNet.Library.Repositories.Base
         }
         public virtual void UpdateRange(params T[] models)
             => UpdateRange(models.AsEnumerable());
+
+        // Save
+        public virtual void Save() { }
     }
 }
