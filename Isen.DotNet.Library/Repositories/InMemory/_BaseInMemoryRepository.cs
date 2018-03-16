@@ -4,6 +4,7 @@ using Isen.DotNet.Library.Models.Base;
 using Isen.DotNet.Library.Models.Implementation;
 using Isen.DotNet.Library.Repositories.Base;
 using Isen.DotNet.Library.Repositories.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Isen.DotNet.Library.Repositories.InMemory
 {
@@ -12,6 +13,11 @@ namespace Isen.DotNet.Library.Repositories.InMemory
             where T : BaseModel
     {
         protected IList<T> _modelCollection;
+
+        public BaseInMemoryRepository(
+            ILogger<BaseInMemoryRepository<T>> logger) : base(logger)
+        {   
+        }
 
         public int NewId()
         {
@@ -44,7 +50,8 @@ namespace Isen.DotNet.Library.Repositories.InMemory
                 // trouver le model ayant le même id
                 // dans la liste
                 var existing = Single(model.Id);
-                existing = model;
+                list.Remove(existing);                
+                list.Add(model);
             }
             _modelCollection = list;
         }

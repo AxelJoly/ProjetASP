@@ -8,17 +8,21 @@ using Isen.DotNet.Web.Models;
 using Isen.DotNet.Library.Repositories.Interfaces;
 using Isen.DotNet.Library.Repositories.InMemory;
 using Isen.DotNet.Library.Models.Implementation;
+using Microsoft.Extensions.Logging;
 
 namespace Isen.DotNet.Web.Controllers
 {
     public class CityController : Controller
     {
         private ICityRepository _repository;
+        private readonly ILogger<CityController> _logger;
 
         public CityController(
+            ILogger<CityController> logger,
             ICityRepository repository)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -39,6 +43,7 @@ namespace Isen.DotNet.Web.Controllers
         [HttpPost]
         public IActionResult Detail(City model)
         {
+            _logger.LogWarning($"POST : {model}");
             _repository.Update(model);
             return RedirectToAction("Index");
         }

@@ -4,12 +4,21 @@ using System.Linq;
 using Isen.DotNet.Library.Models.Base;
 using Isen.DotNet.Library.Models.Implementation;
 using Isen.DotNet.Library.Repositories.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Isen.DotNet.Library.Repositories.Base
 {
     public abstract class BaseRepository<T> : IBaseRepository<T>
         where T : BaseModel
     {
+        protected readonly ILogger<BaseRepository<T>> Logger;
+
+        public BaseRepository(
+            ILogger<BaseRepository<T>> logger)        
+        {
+            Logger = logger;
+        }
+
         // Liste des objets du modèle
         public abstract IQueryable<T> ModelCollection { get; }
         // Méthodes de listes (tout et query)
