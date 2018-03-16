@@ -9,6 +9,7 @@ namespace Isen.DotNet.Library.Models.Implementation
         public string LastName { get;set; }
         public DateTime? BirthDate { get;set; }
         public City City { get;set; }
+        public int? CityId { get;set; }
 
         private string _name;
         public override string Name 

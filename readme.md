@@ -387,3 +387,14 @@ Dans la classe `City` ajouter un champ PersonCollection.
 Ajouter un getter pour PersonCount.  
 Inclure cette relation en overridant Includes dans CityRepository.  
 Dans la vue des villes (liste), ajouter la colonne pour afficher le nombre de personnes d'une ville.  
+
+### Gestion des conflits d'intégrité référentielle lors d'un delete
+Si on efface une ville référencée par des personnes, 3 stratégies possibles :
+* Effacer les personnes associées (CASCADE DELETE)
+* Ne rien faire et empêcher l'effacement
+* Mettre la relation à null (Set Null)  
+
+Dans `ApplicationDbContext` et préciser, pour les 2 entités :
+* les relations
+* la stratégie au delete d'une ville  
+
