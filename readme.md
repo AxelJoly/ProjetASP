@@ -398,3 +398,10 @@ Dans `ApplicationDbContext` et préciser, pour les 2 entités :
 * les relations
 * la stratégie au delete d'une ville  
 
+Ajouter le champ Person.CityId qui sert de clé étrangère
+à la relation Person.City.  
+
+### Pouvoir affecter la ville d'une personne
+Dans le formulaire de détail d'une personne,
+ajouter une liste déroulante, contenant toutes les villes,
+et permettant donc d'affecter la ville à la personne.
