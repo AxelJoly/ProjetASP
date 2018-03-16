@@ -380,4 +380,10 @@ Dupliquer toute la logique associée au vue/controller City :
 Dans `BaseRepository`, ajouter une méthode 
 virtuelle `IQueryable<T> Includes(IQueryable<T> queryable)`.  
 Inclure son appel dans Single, Find, GetAll.  
-Dans CityRepository, override Includes afin d'inclure la ville.  
+Dans PersonRepository, override Includes afin d'inclure la ville.  
+
+### Relation réciproque 
+Dans la classe `City` ajouter un champ PersonCollection.  
+Ajouter un getter pour PersonCount.  
+Inclure cette relation en overridant Includes dans CityRepository.  
+Dans la vue des villes (liste), ajouter la colonne pour afficher le nombre de personnes d'une ville.  
