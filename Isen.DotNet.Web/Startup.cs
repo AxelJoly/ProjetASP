@@ -44,6 +44,9 @@ namespace Isen.DotNet.Web
             services.AddScoped<ICityRepository, DbContextCityRepository>();
             services.AddScoped<IPersonRepository, DbContextPersonRepository>();
 
+            // injection d'autres services
+            services.AddScoped<SeedData>();
+
             // AddTransient : nouvelle référence à chaque appel
             // AddSingleton : même référence pour toute l'appli, y compris
             //        entre différents appels http

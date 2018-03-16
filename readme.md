@@ -329,3 +329,28 @@ Hériter de `BaseDbContextRepository` pour créer :
 ### Modifier l'injection de dépendances
 Dans Startup, changer les InMemory par des DbContext
 et remettre l'injection en mode Scoped.  
+
+## Initialiser la base de données
+
+### Créer une classe de gestion de la base
+Dans Library/data, ajouter une classe `SeedData`.  
+Injecter des dépendantes dans le constructeur.  
+Dans Startup, ajouter la classe SeedData elle-même au container IoC (configuration de l'injection).  
+
+### Permettre la suppression / recréation
+* Coder DropDatabase
+* Coder CreateDatabase
+
+### Injecter des données de test (d'initialisation)
+* Coder AddCities
+* Coder AppPersons
+
+### Appeler les méthodes de SeedData
+Dans Program, main :  
+* récupérer un scope d'injection de dépendances
+* récupérer une instance de SeedData
+* Appeler les méthodes codées
+
+Tester l'exécution.  
+Télécharger `Sqlitebrowser` et ouvrir le fichier .db créé à la racine du projet web.  
+Penser à la refermer systématiquement sinon pas de suppression ou écriture possible.  
