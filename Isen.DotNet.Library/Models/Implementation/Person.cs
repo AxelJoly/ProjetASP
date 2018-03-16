@@ -24,5 +24,16 @@ namespace Isen.DotNet.Library.Models.Implementation
 
         public override string Display =>
             $"{base.Display}|Age={Age}|City={City}"; 
+
+        public override dynamic ToDynamic()
+        {
+            var response = base.ToDynamic();
+            response.first = FirstName;
+            response.last = LastName;
+            response.birth = BirthDate;
+            response.age = Age;
+            response.city = City?.ToDynamic();
+            return response;
+        }
     }
 }
